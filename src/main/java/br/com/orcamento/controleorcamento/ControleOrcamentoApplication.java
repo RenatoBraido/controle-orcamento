@@ -8,6 +8,8 @@ public class ControleOrcamentoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ControleOrcamentoApplication.class, args);
+		System.out.println("Hello Word");
 	}
+
 
 }
