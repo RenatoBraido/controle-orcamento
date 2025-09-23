@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Orçamento</title>
+</head>
+<body>
+<h1>Novo Orçamento para: <span th:text="${produto.nome}">Nome do Produto</span></h1>
+
+<form th:action="@{/orcamentos}" th:object="${orcamento}" method="post">
+
+    <input type="hidden" th:field="*{produto.id}" />
+
+    <div>
+        <label for="valorOrcado">Valor Orçado (R$):</label>
+        <input type="number" step="0.01" id="valorOrcado" th:field="*{valorOrcado}" required />
+    </div>
+
+    <div>
+        <label for="descontoAplicado">Desconto (R$):</label>
+        <input type="number" step="0.01" id="descontoAplicado" th:field="*{descontoAplicado}" />
+    </div>
+
+    <div>
+        <label for="observacoes">Descrição/Observações:</label>
+        <textarea id="observacoes" th:field="*{observacoes}" rows="4" cols="50"></textarea>
+    </div>
+
+    <button type="submit">Salvar Orçamento</button>
+</form>
+
+</body>
+</html>
