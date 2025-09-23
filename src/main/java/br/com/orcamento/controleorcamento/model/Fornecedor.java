@@ -1,43 +1,38 @@
 package br.com.orcamento.controleorcamento.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
+@Table(name = "FORNECEDOR")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Fornecedor {
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getContato() {
-        return contato;
-    }
-
-    public void setContato(String contato) {
-        this.contato = contato;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IDFORNECEDOR", unique = true, nullable = false)
     private Long id;
 
+    @Column(name = "REPRESENT")
     private String nome;
 
+    @Column(name = "CONTREPRE")
     private String contato;
 
-    // Getters e Setters (serão gerados pela IDE)
+    @Column(name = "ID_PESSOA", nullable = false, unique = true)
+    private Long idPessoa;
+
+    @Column(name = "DECRICAO")
+    private String decricao;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "fornecedores")
+    private List<Produto> produtos;
 }

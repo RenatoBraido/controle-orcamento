@@ -1,74 +1,69 @@
 package br.com.orcamento.controleorcamento.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "ORCAMENTO")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Orcamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_ORCAMENTO", unique = true, nullable = false)
     private Long id;
 
-    private BigDecimal valorOrcado;
+    @Column(name = "DATA_EMISSAO", nullable = false)
+    private LocalDate dataEmissao;
 
-    private BigDecimal descontoAplicado;
+    @Column(name = "DATA_VALIDADE", nullable = false)
+    private LocalDate dataValidade;
 
-    private LocalDateTime dataDoOrcamento;
+    @Column(name = "DATA_ENTREGA", nullable = false)
+    private LocalDate dataEntrega;
 
-    private String observacoes;
+    @Column(name = "ID_FORNECEDOR")
+    private Long idFornecedor;
+
+    @Column(name = "ID_PRODUTO")
+    private Long idProduto;
+
+    @Column(name = "ID_UNMEDI")
+    private Long idUnmedi;
+
+    @Column(name = "GARANTIA")
+    private String garantia;
+
+    @Column(name = "CONDICOES_PAGAMENTO")
+    private String condicoesPagamento;
+
+    @Column(name = "PRECO_COMPRA")
+    private double precoCompra;
+
+    @Column(name = "QUANTIDADE")
+    private int quantidade;
+
+    @Column(name = "ID_GRUPOAPROVADOR")
+    private int idGrupoAprovador;
+
+    @Column(name = "ID_USERAPROVE")
+    private int idUserAprove;
+
+    @Column(name = "STATUS")
+    private String status;
+
+    @Column(name = "DATA_GERACAO")
+    private LocalDate dataGeracao;
 
     @ManyToOne
     private Produto produto;
 
-    // Getters e Setters serão gerados aqui
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public BigDecimal getValorOrcado() {
-        return valorOrcado;
-    }
-
-    public void setValorOrcado(BigDecimal valorOrcado) {
-        this.valorOrcado = valorOrcado;
-    }
-
-    public BigDecimal getDescontoAplicado() {
-        return descontoAplicado;
-    }
-
-    public void setDescontoAplicado(BigDecimal descontoAplicado) {
-        this.descontoAplicado = descontoAplicado;
-    }
-
-    public LocalDateTime getDataDoOrcamento() {
-        return dataDoOrcamento;
-    }
-
-    public void setDataDoOrcamento(LocalDateTime dataDoOrcamento) {
-        this.dataDoOrcamento = dataDoOrcamento;
-    }
-
-    public String getObservacoes() {
-        return observacoes;
-    }
-
-    public void setObservacoes(String observacoes) {
-        this.observacoes = observacoes;
-    }
-
-    public Produto getProduto() {
-        return produto;
-    }
-
-    public void setProduto(Produto produto) {
-        this.produto = produto;
-    }
 }

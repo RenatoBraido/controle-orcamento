@@ -1,95 +1,59 @@
 package br.com.orcamento.controleorcamento.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.List;
 
 @Entity
+@Data
+@Table(name = "PRODUTO")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Produto {
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public BigDecimal getValor() {
-        return valor;
-    }
-
-    public void setValor(BigDecimal valor) {
-        this.valor = valor;
-    }
-
-    public BigDecimal getTaxas() {
-        return taxas;
-    }
-
-    public void setTaxas(BigDecimal taxas) {
-        this.taxas = taxas;
-    }
-
-    public LocalDate getPrazoEntrega() {
-        return prazoEntrega;
-    }
-
-    public void setPrazoEntrega(LocalDate prazoEntrega) {
-        this.prazoEntrega = prazoEntrega;
-    }
-
-    public BigDecimal getDescontos() {
-        return descontos;
-    }
-
-    public void setDescontos(BigDecimal descontos) {
-        this.descontos = descontos;
-    }
-
-    public String getObservacoes() {
-        return observacoes;
-    }
-
-    public void setObservacoes(String observacoes) {
-        this.observacoes = observacoes;
-    }
-
-    public Fornecedor getFornecedor() {
-        return fornecedor;
-    }
-
-    public void setFornecedor(Fornecedor fornecedor) {
-        this.fornecedor = fornecedor;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IDPRODUTO", unique = true, nullable = false)
     private Long id;
 
+    @Column(name = "NOME", nullable = false, unique = true)
     private String nome;
 
-    private BigDecimal valor;
-
-    private BigDecimal taxas;
-
-    private LocalDate prazoEntrega;
-
-    private BigDecimal descontos;
-
+    @Column(name = "DESCRICAO")
     private String observacoes;
 
-    @ManyToOne
-    private Fornecedor fornecedor;
+    @Column(name = "ID_ALMOX", nullable = false)
+    private Long idAlmoxarifado;
 
-    // Getters e Setters serão gerados aqui
+    @Column(name = "TEMPIDEAL")
+    private Double temperaturaProduto;
+
+    @Column(name = "CODBARRAS")
+    private String codigoBarras;
+
+    @Column(name = "STQMAX", nullable = false)
+    private int estoqueMaximo;
+
+    @Column(name = "STQMIN", nullable = false)
+    private int estoqueMinimo;
+
+    @Column(name = "PNTPEDIDO", nullable = false)
+    private int pontoAbastecimento;
+
+    @Column(name = "ID_UNMEDI")
+    private Long idUnidadeMedida;
+
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(
+            name = "FORNECPROD",
+            joinColumns = @JoinColumn(name = "ID_PRODUTO"),
+            inverseJoinColumns = @JoinColumn(name = "ID_FORNECEDOR")
+    )
+    private List<Fornecedor> fornecedores;
 
 }
