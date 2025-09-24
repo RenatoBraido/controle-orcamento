@@ -33,9 +33,6 @@ public class Orcamento {
     @Column(name = "ID_FORNECEDOR")
     private Long idFornecedor;
 
-    @Column(name = "ID_PRODUTO")
-    private Long idProduto;
-
     @Column(name = "ID_UNMEDI")
     private Long idUnmedi;
 
@@ -64,6 +61,7 @@ public class Orcamento {
     private LocalDate dataGeracao;
 
     @ManyToOne
+    @JoinColumn(name = "ID_PRODUTO")
     private Produto produto;
 
 }

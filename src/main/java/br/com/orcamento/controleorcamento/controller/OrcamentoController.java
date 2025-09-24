@@ -1,32 +1,42 @@
 package br.com.orcamento.controleorcamento.controller;
 
 import br.com.orcamento.controleorcamento.model.Orcamento;
-import br.com.orcamento.controleorcamento.model.Produto;
-import br.com.orcamento.controleorcamento.repository.FornecedorRepository;
-import br.com.orcamento.controleorcamento.repository.OrcamentoRepository;
-import br.com.orcamento.controleorcamento.repository.ProdutoRepository;
+import br.com.orcamento.controleorcamento.service.OrcamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Optional;
+import java.util.List;
 
 @RestController
 @RequestMapping("/orcamento")
 public class OrcamentoController {
 
     @Autowired
-    private FornecedorRepository fornecedorRepository;
+    private OrcamentoService orcamentoService;
 
-    @Autowired
-    private ProdutoRepository produtoRepository;
+    // FUNÇÃO 1: VISUALIZAR (GET)
+    @GetMapping
+    public List<Orcamento> listarOrcamentos() {
+        return orcamentoService.listarTodosOsOrcamentos();
+    }
 
-    @Autowired
-    private OrcamentoRepository orcamentoRepository;
+    // FUNÇÃO 2: CADASTRAR (POST)
+    @PostMapping
+    public Orcamento salvarOrcamento(@RequestBody Orcamento orcamento) {
+        return orcamentoService.criarNovoOrcamento(orcamento);
+    }
 
-    @GetMapping("/novo")
+    // FUNÇÃO 3: DELETAR (DELETE)
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarOrcamento(@PathVariable Long id) {
+        orcamentoService.deletarOrcamento(id);
+        return ResponseEntity.noContent().build(); // Retorna uma resposta HTTP 204 (No Content)
+    }
+
+    /*
+    *
+    *@GetMapping("/novo")
     public String exibirFormulario(@RequestParam("produtoId") Long produtoId, Model model) {
 
         Optional<Produto> resultadoBusca = produtoRepository.findById(produtoId);
@@ -58,4 +68,6 @@ public class OrcamentoController {
         // Redireciona o usuário de volta para a lista de produtos
         return "redirect:/produtos";
     }
+    * */
+
 }
