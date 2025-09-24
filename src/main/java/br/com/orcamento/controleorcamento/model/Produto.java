@@ -2,14 +2,13 @@ package br.com.orcamento.controleorcamento.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "PRODUTO")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -47,7 +46,6 @@ public class Produto {
     @Column(name = "ID_UNMEDI")
     private Long idUnidadeMedida;
 
-    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "FORNECPROD",
