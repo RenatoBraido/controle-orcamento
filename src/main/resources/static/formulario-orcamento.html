@@ -5,73 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Novo Orçamento - Fasicomércio</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/estilo.css"> </head>
+    <link rel="stylesheet" href="estilo.css">
+</head>
 <body>
 <header>
-    <img src="/static/logo_fasicomercio_azul.png" alt="Logo Fasicomércio" class="logo">
-    <h1> Cadastre seu Orçamento</h1>
+    <div class="header-content">
+        <img src="logo_fasicomercio_azul.png" alt="Logo Fasicomércio" class="logo">
+        <h1>Novo Orçamento</h1>
+    </div>
 </header>
 
-<main>
-    <form id="orcamentoForm">
-        <a href="lista-orcamentos.html" class="btn-novo-orcamento">Visualizar lista de orçamentos</a>
-        <div class="form-group">
-            <label for="produto">ID Produto: :</label>
-            <input type="number" step="0.01" id="produto" name="produto" required />
-        </div>
+<div class="wrapper">
+    <aside class="sidebar">
+        <h2 class="sidebar-title">Navegação</h2>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="lista-orcamentos.html">Visualizar Orçamentos</a></li>
+            </ul>
+        </nav>
+        <a href="#" class="btn-sidebar-action" style="margin-top: auto; background-color: #dc3545;">Sair</a>
+    </aside>
 
-        <div class="form-group">
-            <label for="precoCompra">Preço de Compra (R$):</label>
-            <input type="number" step="0.01" id="precoCompra" name="precoCompra" required />
-        </div>
+    <main class="content-area">
+        <div class="content-card">
+            <h2>Formulário de Cadastro de Orçamento</h2>
+            <form id="orcamentoForm">
+                <input type="hidden" id="produtoId" value="1" />
 
-        <div class="form-group">
-            <label for="quantidade">Quantidade:</label>
-            <input type="number" id="quantidade" name="quantidade" required />
-        </div>
+                <div class="form-group">
+                    <label for="produto">ID Produto:</label>
+                    <input type="number" id="produto" name="produto" value="1" readonly />
+                </div>
 
-        <div class="form-group">
-            <label for="dataValidade">Data de Validade:</label>
-            <input type="date" id="dataValidade" name="dataValidade" required />
-        </div>
+                <div class="form-group">
+                    <label for="precoCompra">Preço de Compra (R$):</label>
+                    <input type="number" step="0.01" id="precoCompra" name="precoCompra" required />
+                </div>
 
-        <div class="form-group">
-            <label for="dataEntrega">Data de Entrega:</label>
-            <input type="date" id="dataEntrega" name="dataEntrega" required />
-        </div>
+                <div class="form-group">
+                    <label for="quantidade">Quantidade:</label>
+                    <input type="number" id="quantidade" name="quantidade" required />
+                </div>
 
-        <div class="form-group">
-            <label for="idFornecedor">ID Fornecedor:</label>
-            <input type="number" id="idFornecedor" name="idFornecedor" required />
-        </div>
-        <div class="form-group">
-            <label for="idUnmedi">ID Unidade de Medida:</label>
-            <input type="number" id="idUnmedi" name="idUnmedi" required />
-        </div>
+                <div class="form-group">
+                    <label for="dataValidade">Data de Validade:</label>
+                    <input type="date" id="dataValidade" name="dataValidade" required />
+                </div>
 
-        <div class="form-group">
-            <label for="garantia">Garantia:</label>
-            <input type="text" id="garantia" name="garantia" />
-        </div>
-        <div class="form-group">
-            <label for="condicoesPagamento">Condições de Pagamento:</label>
-            <input type="text" id="condicoesPagamento" name="condicoesPagamento" />
-        </div>
+                <div class="form-group">
+                    <label for="dataEntrega">Data de Entrega:</label>
+                    <input type="date" id="dataEntrega" name="dataEntrega" required />
+                </div>
 
-        <div class="form-group">
-            <label for="idGrupoAprovador">ID Grupo Aprovador:</label>
-            <input type="number" id="idGrupoAprovador" name="idGrupoAprovador" value="0" />
+                <div class="form-group">
+                    <label for="idFornecedor">ID Fornecedor:</label>
+                    <input type="number" id="idFornecedor" name="idFornecedor" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="idUnmedi">ID Unidade de Medida:</label>
+                    <input type="number" id="idUnmedi" name="idUnmedi" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="garantia">Garantia:</label>
+                    <input type="text" id="garantia" name="garantia" />
+                </div>
+
+                <div class="form-group">
+                    <label for="condicoesPagamento">Condições de Pagamento:</label>
+                    <input type="text" id="condicoesPagamento" name="condicoesPagamento" />
+                </div>
+
+                <div class="form-group">
+                    <label for="idGrupoAprovador">ID Grupo Aprovador:</label>
+                    <input type="number" id="idGrupoAprovador" name="idGrupoAprovador" value="0" />
+                </div>
+
+                <div class="form-group">
+                    <label for="idUserAprove">ID Usuário Aprovador:</label>
+                    <input type="number" id="idUserAprove" name="idUserAprove" value="0" />
+                </div>
+
+                <button type="submit">Salvar Orçamento</button>
+            </form>
+
+            <div id="message" class="success-message"></div>
         </div>
-        <div class="form-group">
-            <label for="idUserAprove">ID Usuário Aprovador:</label>
-            <input type="number" id="idUserAprove" name="idUserAprove" value="0" />
-        </div>
+    </main>
+</div>
 
-        <button type="submit">Salvar Orçamento</button>
-    </form>
-
-    <div id="message" class="success-message"></div>
-</main>
-
-<script src="/static/formulario-orcamento.js"></script> </body>
+<script src="formulario-orcamento.js"></script>
+</body>
 </html>

@@ -1,14 +1,21 @@
-/* Importação da fonte Montserrat (redundante se já no HTML, mas boa prática para CSS) */
-@import url('https://fonts.fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+/* Importação da fonte Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
 
-/* Variáveis de Cores */
+/* Variáveis de Cores Atualizadas para o Estilo da Imagem 2 */
 :root {
-    --azul-primario: #335e9e;
+    --azul-escuro-header: #335e9e; /* Header */
+    --azul-claro-sidebar: #E0EBF5; /* Fundo da sidebar */
+    --azul-botao-sidebar: #6C757D; /* Cor mais suave para botões da sidebar */
+    --azul-hover-sidebar: #88929C; /* Hover dos botões da sidebar */
+    --cinza-fundo-geral: #F2F4F7; /* Fundo da área de conteúdo principal */
     --branco: #FFFFFF;
-    --cinza-claro: #d9d9d9;
-    --texto-escuro: #333; /* Cor para textos gerais */
+    --texto-escuro: #333;
+    --cinza-texto-secundario: #6C757D;
+    --sombra-card: rgba(0, 0, 0, 0.1); /* Sombra para elementos como cards e formulário */
+    --borda-arredondada: 12px;
     --sucesso-verde: #28a745;
     --erro-vermelho: #dc3545;
+    --sidebar-width: 280px; /* Largura um pouco maior para a sidebar */
 }
 
 /* Estilos Globais e Reset Básico */
@@ -16,87 +23,193 @@ body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: var(--cinza-claro); /* Fundo cinza */
+    background-color: var(--cinza-fundo-geral); /* Fundo geral claro */
     color: var(--texto-escuro);
     line-height: 1.6;
     display: flex;
-    flex-direction: column;
-    align-items: center; /* Centraliza o conteúdo horizontalmente */
-    min-height: 100vh; /* Ocupa a altura total da viewport */
+    min-height: 100vh;
+    overflow-x: hidden; /* Evita scroll horizontal indesejado */
 }
 
-/* Cabeçalho */
+/* Header */
 header {
-    background-color: var(--azul-primario); /* Azul */
+    background-color: var(--azul-escuro-header);
     color: var(--branco);
-    padding: 20px 0;
-    width: 100%; /* Ocupa a largura total */
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    display: flex; /* Para alinhar logo e título */
-    flex-direction: column;
+    padding: 15px 30px; /* Mais padding lateral */
+    width: 100%;
+    box-shadow: 0 4px 8px var(--sombra-card);
+    display: flex;
+    justify-content: space-between; /* Logo na esquerda, avatar na direita */
     align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
+    box-sizing: border-box;
+    position: fixed; /* Fixa o header no topo */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Garante que fique acima de outros elementos */
+    height: 70px; /* Altura fixa do header */
 }
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px; /* Limita a largura do conteúdo do header */
+    margin: 0 auto;
+}
+
 
 .logo {
-    max-width: 250px; /* Tamanho da logo */
-    height: 200;
-    margin-bottom: 15px; /* Espaço entre logo e título */
+    max-width: 150px; /* Tamanho da logo reduzido para caber no header */
+    height: auto;
+    margin: 0;
 }
 
 h1 {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 700; /* Bold para títulos */
-    color: var(--branco); /* Títulos no header em branco */
+    font-weight: 500; /* Peso médio para o título no header */
+    color: var(--branco);
     margin: 0;
-    font-size: 2.2em; /* Tamanho do título */
+    font-size: 1.5em; /* Título menor para o header */
+    flex-grow: 1; /* Permite que o título ocupe o espaço central */
+    text-align: center;
 }
 
-/* Conteúdo Principal (formulário) */
-main {
-    flex-grow: 1; /* Permite que o main ocupe o espaço restante */
+/* --- LAYOUT PRINCIPAL: SIDEBAR + CONTEÚDO --- */
+
+.wrapper { /* Novo wrapper para todo o conteúdo abaixo do header fixo */
+    display: flex;
+    flex-grow: 1;
+    margin-top: 70px; /* Espaço para o header fixo */
     width: 100%;
-    max-width: 800px; /* Largura máxima para o conteúdo */
-    padding: 20px;
+}
+
+
+/* Sidebar */
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--azul-claro-sidebar); /* Azul claro */
+    box-shadow: 2px 0 5px var(--sombra-card);
+    padding: 20px 15px; /* Ajuste aqui: Padding lateral menor para dar mais espaço */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza itens na sidebar */
+    box-sizing: border-box;
+    flex-shrink: 0;
+    border-top-right-radius: var(--borda-arredondada); /* Cantos arredondados */
+    border-bottom-right-radius: var(--borda-arredondada);
+}
+
+/* ... outros estilos da sidebar ... */
+
+.sidebar-nav {
+    width: 100%;
+    padding: 0; /* Continua 0 */
+    margin: 0;
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.sidebar-nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    margin-bottom: 10px;
+}
+
+/* Estilo para todos os botões/links da sidebar */
+.sidebar .btn-sidebar-action,
+.sidebar-nav a {
+    display: block;
+    width: 100%; /* Isso garante que ele tente ocupar 100% do LI/NAV */
+    padding: 12px 15px; /* Padding interno do botão */
+    background-color: var(--azul-escuro-header);
+    color: var(--branco);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    font-size: 1em;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-sizing: border-box; /* ESSENCIAL: Garante que padding e border sejam incluídos na largura total */
+}
+
+/* Conteúdo principal da página (onde o formulário/tabela aparece) */
+.content-area {
+    flex-grow: 1;
+    padding: 30px; /* Padding geral para o conteúdo */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center; /* Centraliza o card/formulário */
+    align-items: flex-start; /* Alinha no topo */
+    padding-left: 50px; /* Mais espaço entre sidebar e conteúdo */
+}
+
+/* Card para conteúdo principal (formulário ou itens da lista) */
+.content-card {
+    background-color: var(--branco);
+    padding: 40px; /* Mais padding interno */
+    border-radius: var(--borda-arredondada);
+    box-shadow: 0 5px 15px var(--sombra-card);
+    width: 100%;
+    max-width: 900px; /* Largura máxima para o card */
     box-sizing: border-box;
 }
 
-form {
-    background-color: var(--branco); /* Fundo do formulário em branco */
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+.content-card h2 {
+    font-size: 1.8em;
+    color: var(--texto-escuro);
+    margin-top: 0;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 700;
+}
+
+
+/* --- ESTILOS DO FORMULÁRIO --- */
+
+form { /* O form está dentro de .content-card */
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Duas colunas */
+    gap: 25px 35px; /* Espaçamento maior entre campos */
+}
+
+form button[type="submit"],
+#message {
+    grid-column: 1 / -1; /* Ocupa todas as colunas */
     width: 100%;
-    box-sizing: border-box;
+    margin-top: 15px; /* Espaçamento acima do botão/mensagem */
 }
 
 .form-group {
-    margin-bottom: 18px;
+    margin-bottom: 0;
 }
 
 label {
     display: block;
     margin-bottom: 8px;
-    font-weight: 400; /* Regular para subtítulos e labels */
-    color: var(--texto-escuro);
-    font-size: 1.05em;
+    font-weight: 500; /* Peso da fonte médio para labels */
+    color: var(--cinza-texto-secundario);
+    font-size: 0.95em;
 }
 
 input[type="number"],
 input[type="text"],
 input[type="date"],
 textarea {
-    width: calc(100% - 24px); /* Largura total menos padding e borda */
+    width: calc(100% - 24px);
     padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 6px;
+    border-radius: 8px; /* Mais arredondado */
     font-size: 1em;
     font-family: 'Montserrat', sans-serif;
     color: var(--texto-escuro);
-    background-color: var(--branco);
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    background-color: #f9f9f9; /* Levemente cinza para inputs */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -104,91 +217,101 @@ input[type="number"]:focus,
 input[type="text"]:focus,
 input[type="date"]:focus,
 textarea:focus {
-    border-color: var(--azul-primario);
-    box-shadow: 0 0 8px rgba(51, 94, 158, 0.3);
-    outline: none; /* Remove a borda de foco padrão do navegador */
+    border-color: var(--azul-escuro-header);
+    box-shadow: 0 0 0 3px rgba(51, 94, 158, 0.2); /* Sombra de foco mais suave */
+    outline: none;
+    background-color: var(--branco);
 }
 
 button[type="submit"] {
-    display: block; /* Ocupa toda a largura disponível */
-    width: 100%;
     padding: 15px;
-    background-color: var(--azul-primario); /* Botão em azul */
+    background-color: var(--azul-escuro-header);
     color: var(--branco);
     border: none;
     border-radius: 8px;
     cursor: pointer;
     font-size: 1.1em;
-    font-weight: 700; /* Bold para botões */
+    font-weight: 700;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-top: 25px;
 }
 
 button[type="submit"]:hover {
-    background-color: #2a4e80; /* Um azul um pouco mais escuro ao passar o mouse */
-    transform: translateY(-2px); /* Efeito de leve "elevação" */
+    background-color: #2a4e80;
+    transform: translateY(-2px);
 }
 
 /* Mensagens de Feedback */
 #message {
-    margin-top: 25px;
     padding: 15px;
     border-radius: 8px;
     text-align: center;
     font-weight: 700;
     font-size: 1.1em;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px var(--sombra-card);
 }
 
 .success-message {
-    background-color: #d4edda; /* Fundo verde claro */
-    color: var(--sucesso-verde); /* Texto verde */
+    background-color: #d4edda;
+    color: var(--sucesso-verde);
     border: 1px solid var(--sucesso-verde);
 }
 
 .error-message {
-    background-color: #f8d7da; /* Fundo vermelho claro */
-    color: var(--erro-vermelho); /* Texto vermelho */
+    background-color: #f8d7da;
+    color: var(--erro-vermelho);
     border: 1px solid var(--erro-vermelho);
 }
 
 
 /* --- ESTILOS PARA A PÁGINA DE LISTA DE ORÇAMENTOS --- */
 
-/* Estilo para a tabela da lista de orçamentos */
 #tabela-orcamentos {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-collapse: separate; /* Permite borda-radius */
+    border-spacing: 0; /* Remove espaçamento entre células */
+    margin-top: 0;
     background-color: var(--branco);
+    border-radius: var(--borda-arredondada); /* Borda arredondada na tabela */
+    overflow: hidden; /* Garante que os cantos arredondados apareçam */
 }
 
-/* Reutilizando estilos de cabeçalho e células da tabela anterior */
 #tabela-orcamentos th, #tabela-orcamentos td {
-    border: 1px solid var(--cinza-claro);
+    border: none; /* Removendo bordas individuais, a linha de baixo terá */
     padding: 15px;
     text-align: left;
+    border-bottom: 1px solid #eee; /* Linha divisória entre as linhas */
 }
 
 #tabela-orcamentos thead {
-    background-color: var(--azul-primario);
-    color: var(--branco);
+    background-color: #f0f0f0; /* Fundo mais claro para cabeçalho da tabela */
+    color: var(--texto-escuro);
     font-weight: 700;
+    font-size: 0.95em;
 }
+
+#tabela-orcamentos th:first-child { border-top-left-radius: var(--borda-arredondada); }
+#tabela-orcamentos th:last-child { border-top-right-radius: var(--borda-arredondada); }
+
+#tabela-orcamentos tbody tr:last-child td:first-child { border-bottom-left-radius: var(--borda-arredondada); }
+#tabela-orcamentos tbody tr:last-child td:last-child { border-bottom-right-radius: var(--borda-arredondada); }
+
 
 #tabela-orcamentos tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
+#tabela-orcamentos tbody tr:hover {
+    background-color: #f0f5fa; /* Leve destaque ao passar o mouse */
+}
 
-/* Estilos para o "badge" de status */
+
 .status {
-    padding: 5px 10px;
-    border-radius: 15px;
+    padding: 6px 12px; /* Padding um pouco maior */
+    border-radius: 20px; /* Mais arredondado */
     color: var(--branco);
-    font-size: 0.9em;
+    font-size: 0.85em;
     font-weight: 700;
     text-transform: uppercase;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Sombra para o badge */
 }
 
 .status-pendente {
@@ -202,21 +325,4 @@ button[type="submit"]:hover {
 
 .status-reprovado {
     background-color: var(--erro-vermelho); /* Vermelho */
-}
-
-/* Estilo para o botão de "Criar Novo Orçamento" */
-.btn-novo-orcamento {
-    display: inline-block;
-    padding: 12px 25px;
-    background-color: var(--azul-primario);
-    color: var(--branco);
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 700;
-    transition: background-color 0.3s ease;
-    margin-bottom: 20px;
-}
-
-.btn-novo-orcamento:hover {
-    background-color: #2a4e80;
 }
