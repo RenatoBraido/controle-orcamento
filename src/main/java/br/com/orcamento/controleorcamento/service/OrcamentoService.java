@@ -1,7 +1,9 @@
 package br.com.orcamento.controleorcamento.service;
 
+import br.com.orcamento.controleorcamento.model.Fornecedor;
 import br.com.orcamento.controleorcamento.model.Orcamento;
 import br.com.orcamento.controleorcamento.model.Produto;
+import br.com.orcamento.controleorcamento.repository.FornecedorRepository;
 import br.com.orcamento.controleorcamento.repository.OrcamentoRepository;
 import br.com.orcamento.controleorcamento.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,9 @@ import java.util.List;
 
 @Service
 public class OrcamentoService {
+
+    @Autowired
+    private FornecedorRepository fornecedorRepository;
 
     @Autowired
     private OrcamentoRepository orcamentoRepository;
@@ -43,4 +48,7 @@ public class OrcamentoService {
         return produtoRepository.findAll();
     }
 
+    public List<Fornecedor> listarFornecedores(){
+        return fornecedorRepository.findAll();
+    }
 }

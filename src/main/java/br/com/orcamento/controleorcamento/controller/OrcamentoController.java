@@ -1,5 +1,6 @@
 package br.com.orcamento.controleorcamento.controller;
 
+import br.com.orcamento.controleorcamento.model.Fornecedor;
 import br.com.orcamento.controleorcamento.model.Orcamento;
 import br.com.orcamento.controleorcamento.model.Produto;
 import br.com.orcamento.controleorcamento.service.OrcamentoService;
@@ -8,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/orcamento")
 public class OrcamentoController {
@@ -40,5 +40,8 @@ public class OrcamentoController {
         return orcamentoService.listarProdutos();
     }
 
-
+    @GetMapping("/listarFornecedores")
+    public List<Fornecedor> listarFornecedores(){
+        return orcamentoService.listarFornecedores();
+    }
 }
