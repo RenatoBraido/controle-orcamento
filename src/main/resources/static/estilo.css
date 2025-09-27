@@ -151,3 +151,72 @@ button[type="submit"]:hover {
     color: var(--erro-vermelho); /* Texto vermelho */
     border: 1px solid var(--erro-vermelho);
 }
+
+
+/* --- ESTILOS PARA A PÁGINA DE LISTA DE ORÇAMENTOS --- */
+
+/* Estilo para a tabela da lista de orçamentos */
+#tabela-orcamentos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: var(--branco);
+}
+
+/* Reutilizando estilos de cabeçalho e células da tabela anterior */
+#tabela-orcamentos th, #tabela-orcamentos td {
+    border: 1px solid var(--cinza-claro);
+    padding: 15px;
+    text-align: left;
+}
+
+#tabela-orcamentos thead {
+    background-color: var(--azul-primario);
+    color: var(--branco);
+    font-weight: 700;
+}
+
+#tabela-orcamentos tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Estilos para o "badge" de status */
+.status {
+    padding: 5px 10px;
+    border-radius: 15px;
+    color: var(--branco);
+    font-size: 0.9em;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.status-pendente {
+    background-color: #ffc107; /* Amarelo/Laranja */
+    color: #333;
+}
+
+.status-aprovado {
+    background-color: var(--sucesso-verde); /* Verde */
+}
+
+.status-reprovado {
+    background-color: var(--erro-vermelho); /* Vermelho */
+}
+
+/* Estilo para o botão de "Criar Novo Orçamento" */
+.btn-novo-orcamento {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: var(--azul-primario);
+    color: var(--branco);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.btn-novo-orcamento:hover {
+    background-color: #2a4e80;
+}
