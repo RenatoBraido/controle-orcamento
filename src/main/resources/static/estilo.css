@@ -41,8 +41,8 @@ header {
 }
 
 .logo {
-    max-width: 180px; /* Tamanho da logo */
-    height: auto;
+    max-width: 250px; /* Tamanho da logo */
+    height: 200;
     margin-bottom: 15px; /* Espaço entre logo e título */
 }
 
