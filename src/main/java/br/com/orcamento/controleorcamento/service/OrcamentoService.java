@@ -1,7 +1,9 @@
 package br.com.orcamento.controleorcamento.service;
 
 import br.com.orcamento.controleorcamento.model.Orcamento;
+import br.com.orcamento.controleorcamento.model.Produto;
 import br.com.orcamento.controleorcamento.repository.OrcamentoRepository;
+import br.com.orcamento.controleorcamento.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ public class OrcamentoService {
 
     @Autowired
     private OrcamentoRepository orcamentoRepository;
+    @Autowired
+    private ProdutoRepository produtoRepository;
 
     // Função 1: Visualizar
     public List<Orcamento> listarTodosOsOrcamentos() {
@@ -34,4 +38,9 @@ public class OrcamentoService {
     public void deletarOrcamento(Long id) {
         orcamentoRepository.deleteById(id);
     }
+
+    public List<Produto> listarProdutos(){
+        return produtoRepository.findAll();
+    }
+
 }
